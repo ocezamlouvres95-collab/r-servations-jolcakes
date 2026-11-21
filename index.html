@@ -1,1550 +1,291 @@
-```html
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizon Pro — Réservation en Ligne & Devis Sur-Mesure</title>
-    <!-- Chargement de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Police Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Icônes Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Transitions fluides et personnalisation subtile de la barre de défilement */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f8fafc;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-        .tab-active {
-            border-bottom: 2px solid #4f46e5;
-            color: #4f46e5;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JOLCAKES – Réservez nos locaux dès 9h</title>
+<meta name="description" content="Petit-déjeuner d’équipe, anniversaire, atelier : réservez le salon de thé JOLCAKES dès 9h, jusqu’à 35 personnes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF7F6; --ink:#2A1A1F; --muted:#6B5A5F; --line:#E6D9D9;
+  --berry:#A82C55; --berry-d:#8A2145; --pist:#DDE8D6; --butter:#F4E3A1; --card:#FFFFFF;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.1;margin:0}
+a{color:var(--berry)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{background:var(--ink);color:#fff}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.logo{font-family:"DM Serif Display",Georgia,serif;font-size:26px;letter-spacing:.02em}
+.logo small{display:block;font:400 12px/1 Figtree,sans-serif;color:#D9C7C7;letter-spacing:.04em;margin-top:2px}
+header.top a.btn-top{color:#fff;text-decoration:none;border:1px solid #ffffff66;padding:8px 14px;border-radius:999px;font-size:15px}
+.hero{background:var(--ink);color:#fff;padding:36px 0 72px}
+.hero h1{font-size:clamp(40px,8vw,84px);max-width:11ch}
+.hero p{max-width:46ch;color:#EADBDB;font-size:19px;margin:20px 0 28px}
+.hero .hours{display:inline-block;background:var(--butter);color:var(--ink);padding:6px 14px;border-radius:999px;font-weight:700;font-size:15px;margin-bottom:18px}
+.cta{display:inline-block;background:var(--berry);color:#fff;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:999px;border:0;font:700 17px Figtree,sans-serif;cursor:pointer}
+.cta:hover{background:var(--berry-d)}
+.cta[disabled]{opacity:.6;cursor:wait}
+section{padding:56px 0}
+h2{font-size:clamp(30px,5vw,44px);margin-bottom:8px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.layout{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:900px){.layout{grid-template-columns:1.6fr 1fr;align-items:start}}
+fieldset{border:0;padding:0;margin:0 0 30px}
+legend{font-family:"DM Serif Display",Georgia,serif;font-size:24px;margin-bottom:12px;padding:0}
+.choice{display:block;position:relative;border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:16px 18px 16px 52px;margin-bottom:10px;cursor:pointer}
+.choice input{position:absolute;left:18px;top:20px;accent-color:var(--berry);width:20px;height:20px;margin:0}
+.choice b{display:block;font-size:18px}
+.choice span{color:var(--muted);font-size:15px;display:block}
+.choice em{font-style:normal;color:var(--berry-d);font-weight:700;font-size:14px}
+.choice:has(input:checked){border-color:var(--berry);background:#FFF4F7;box-shadow:inset 4px 0 0 var(--berry)}
+.choice:has(input:focus-visible){outline:3px solid var(--butter);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid2{grid-template-columns:1fr 1fr}}
+label.f{display:block;font-weight:500;font-size:15px}
+label.f input,label.f select,label.f textarea{display:block;width:100%;margin-top:6px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:400 17px Figtree,sans-serif;background:#fff;color:var(--ink)}
+label.f input:focus,label.f select:focus,label.f textarea:focus{outline:3px solid var(--butter);border-color:var(--berry)}
+textarea{min-height:96px;resize:vertical}
+.summary{background:var(--pist);border-radius:18px;padding:24px;position:sticky;top:16px}
+.summary h3{font-size:26px;margin-bottom:12px}
+.summary dl{margin:0 0 16px}
+.summary dt{font-size:13px;color:#4C5F48;margin-top:10px}
+.summary dd{margin:0;font-weight:700}
+.total{border-top:1.5px solid #B9CDB1;padding-top:14px;margin-top:6px}
+.total .amt{font-family:"DM Serif Display",Georgia,serif;font-size:34px;line-height:1.1}
+.note{font-size:14px;color:#4C5F48;margin:12px 0 0}
+#status{margin-top:16px;padding:14px 16px;border-radius:12px;display:none;font-weight:500}
+#status.ok{display:block;background:#E3F1DD;border:1.5px solid #8DAA8B}
+#status.err{display:block;background:#FDE8EC;border:1.5px solid var(--berry)}
+.why{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.why ul{list-style:none;margin:0;padding:0;display:grid;gap:10px 40px}
+@media(min-width:700px){.why ul{grid-template-columns:1fr 1fr}}
+.why li{padding:10px 0;border-bottom:1px solid var(--line)}
+footer{background:var(--ink);color:#D9C7C7;padding:32px 0;font-size:15px}
+footer a{color:#fff}
+.sr{position:absolute;left:-9999px}
+@media(prefers-reduced-motion:no-preference){.cta{transition:background .2s}}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-900">
+<body>
 
-    <!-- Barre de navigation supérieure -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-sm shadow-brand-600/30">
-                        <i data-lucide="calendar-check-2" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <span class="font-bold text-lg tracking-tight text-slate-900">Horizon<span class="text-brand-600">Booking</span></span>
-                        <span id="cloudStatusBadge" class="hidden sm:inline-flex items-center gap-1 ml-2 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                            Base sécurisée active
-                        </span>
-                    </div>
-                </div>
+<header class="top"><div class="wrap">
+  <div class="logo">JOLCAKES<small>Créateur d’événements · Salon de thé</small></div>
+  <a class="btn-top" href="#reserver">Réserver</a>
+</div></header>
 
-                <!-- Navigation desktop -->
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                    <a href="#offres" class="hover:text-brand-600 transition-colors">Offres & Forfaits</a>
-                    <a href="#devis" class="hover:text-brand-600 transition-colors">Prestation sur Devis</a>
-                    <a href="#garanties" class="hover:text-brand-600 transition-colors">Sécurité & Stripe</a>
-                </nav>
+<div class="hero"><div class="wrap">
+  <span class="hours">Ouverture spéciale dès 9h · jusqu’à 35 personnes</span>
+  <h1>Votre moment, notre maison.</h1>
+  <p>Petit-déjeuner d’équipe, anniversaire, atelier ou retrouvailles : nous ouvrons le salon de thé rien que pour vous, avant le service de 11h.</p>
+  <a class="cta" href="#reserver">Choisir ma formule</a>
+</div></div>
 
-                <!-- Actions droite : Admin Tarifs/Alertes + Dossiers -->
-                <div class="flex items-center gap-2.5">
-                    <button onclick="openAdminModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 transition-all" title="Gérer les tarifs libres, Stripe et alertes email">
-                        <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-600"></i>
-                        <span class="hidden sm:inline">Espace Pro (Tarifs & Stripe)</span>
-                    </button>
+<section class="why"><div class="wrap">
+  <h2>Pour quels moments ?</h2>
+  <p class="lead">Un lieu calme, chaleureux, préparé pour votre groupe.</p>
+  <ul>
+    <li>Petits-déjeuners et réunions d’équipe</li>
+    <li>Anniversaires, baby showers, retrouvailles de famille</li>
+    <li>Associations, ateliers et formations</li>
+    <li>Séances photo, tournages et rencontres entre amis</li>
+  </ul>
+</div></section>
 
-                    <button onclick="toggleDrawer('bookingsDrawer')" class="relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-xs">
-                        <i data-lucide="briefcase" class="w-4 h-4 text-brand-400"></i>
-                        <span>Mes dossiers</span>
-                        <span id="bookingsBadge" class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-slate-900 bg-brand-400 rounded-full">0</span>
-                    </button>
-                </div>
-            </div>
+<section id="reserver"><div class="wrap">
+  <h2>Réserver en ligne</h2>
+  <p class="lead">Choisissez une formule, donnez-nous vos dates : nous confirmons votre créneau. Pour un projet particulier, demandez un devis.</p>
+
+  <form id="form" class="layout" novalidate>
+    <div>
+      <fieldset>
+        <legend>1. Votre formule</legend>
+        <div id="offers"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Date et groupe</legend>
+        <div class="grid2">
+          <label class="f">Date <input type="date" id="date" required></label>
+          <label class="f">Heure d’arrivée <select id="time" required></select></label>
+          <label class="f">Nombre de personnes (35 max) <input type="number" id="guests" min="1" max="35" value="10" required></label>
+          <label class="f">Durée prévue <select id="duration">
+            <option value="1 h">1 h</option><option value="2 h" selected>2 h</option>
+            <option value="3 h">3 h</option><option value="4 h">4 h</option><option value="Demi-journée">Demi-journée</option>
+          </select></label>
         </div>
-    </header>
+      </fieldset>
 
-    <!-- Section Hero -->
-    <section class="relative overflow-hidden bg-white border-b border-slate-200/70 pt-12 pb-16 sm:pt-16 sm:pb-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold mb-6">
-                    <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
-                    <span>Réservation obligatoire 48h à l'avance</span>
-                    <span class="text-brand-300">•</span>
-                    <span>Paiement Stripe 30 % ou 100 %</span>
-                    <span class="text-brand-300">•</span>
-                    <span>Alertes e-mail instantanées</span>
-                </div>
-                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
-                    Réservez votre prestation en ligne ou demandez un <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-500">devis sur-mesure</span>
-                </h1>
-                <p class="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed">
-                    Planifiez votre intervention au minimum <strong>48 heures à l'avance</strong>. Choisissez une offre à tarif configurable ou soumettez un projet libre sur devis avec règlement sécurisé via Stripe (acompte 30 % ou totalité) et confirmation e-mail immédiate.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#offres" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 transition-all">
-                        <span>Choisir une prestation</span>
-                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                    </a>
-                    <a href="#devis" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm border border-slate-300 transition-all">
-                        <i data-lucide="file-signature" class="w-4 h-4 text-brand-600"></i>
-                        <span>Demander un devis libre</span>
-                    </a>
-                </div>
-            </div>
+      <fieldset>
+        <legend>3. Vos coordonnées</legend>
+        <div class="grid2">
+          <label class="f">Nom et prénom <input type="text" id="name" autocomplete="name" required></label>
+          <label class="f">Téléphone <input type="tel" id="phone" autocomplete="tel" required></label>
+          <label class="f" style="grid-column:1/-1">E-mail <input type="email" id="email" autocomplete="email" required></label>
+          <label class="f" style="grid-column:1/-1">Votre projet, vos envies, allergies éventuelles
+            <textarea id="notes"></textarea></label>
         </div>
-    </section>
+      </fieldset>
 
-    <!-- Section 1 : Offres Citées (Tarifs libres éditables & Réservation 48h avant) -->
-    <section id="offres" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Catalogue Prestations</span>
-                    <span class="px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-semibold">Délai min. 48h</span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Nos Offres & Forfaits (Tarifs Ajustables)</h2>
-                <p class="text-slate-600 text-sm sm:text-base mt-2">
-                    Tarifs modifiables librement depuis l'<strong>Espace Pro</strong>. Réservation ouverte à partir du <strong id="minDateHeroLabel" class="text-slate-900">...</strong>.
-                </p>
-            </div>
-            <!-- Filtres par catégorie -->
-            <div class="flex flex-wrap gap-2" id="categoryFilters">
-                <button onclick="filterOffers('all')" data-cat="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white transition-all">Toutes les offres</button>
-                <button onclick="filterOffers('installation')" data-cat="installation" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all">Installation & Réseau</button>
-                <button onclick="filterOffers('audit')" data-cat="audit" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all">Audit & Sécurité</button>
-                <button onclick="filterOffers('maintenance')" data-cat="maintenance" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all">Maintenance</button>
-            </div>
-        </div>
-
-        <!-- Grille des offres -->
-        <div id="offersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- Les cartes d'offres sont injectées dynamiquement par JS -->
-        </div>
-    </section>
-
-    <!-- Section 2 : Offre Libre sur Devis (Configurateur & Estimation) -->
-    <section id="devis" class="py-16 sm:py-20 bg-white border-t border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                
-                <!-- Colonne explicative -->
-                <div class="lg:col-span-5">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-50 text-amber-700 text-xs font-semibold border border-amber-200/80 mb-4">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                        Sur-Mesure & Projets Complexes
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Besoin d'une prestation libre sur devis ?</h2>
-                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                        Votre besoin sort du cadre d'un forfait standard ? Décrivez votre projet et proposez éventuellement votre budget estimatif. Dès l'envoi, une <strong>alerte e-mail</strong> est transmise au prestataire et vous recevez un accusé de réception.
-                    </p>
-
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200/60">
-                            <div class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
-                                <span class="font-bold text-sm">1</span>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-sm text-slate-900">Délai de planification 48h minimum</h3>
-                                <p class="text-xs text-slate-500 mt-1">Toute demande d'intervention doit être planifiée au moins 48h avant la date souhaitée.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200/60">
-                            <div class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
-                                <span class="font-bold text-sm">2</span>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-sm text-slate-900">Chiffrage libre & validation par e-mail</h3>
-                                <p class="text-xs text-slate-500 mt-1">Le prestataire fixe le tarif final du devis dans son Espace Pro ; vous recevez une alerte e-mail dès validation.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200/60">
-                            <div class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 mt-0.5">
-                                <span class="font-bold text-sm">3</span>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-sm text-slate-900">Règlement Stripe sécurisé (30 % ou 100 %)</h3>
-                                <p class="text-xs text-slate-500 mt-1">Une fois le devis chiffré et validé, réglez en ligne par carte via Stripe (acompte ou totalité).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulaire de Devis Libre -->
-                <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
-                    <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                        <i data-lucide="file-text" class="w-5 h-5 text-brand-600"></i>
-                        Configurer ma demande de devis libre
-                    </h3>
-
-                    <form id="customQuoteForm" onsubmit="submitCustomQuote(event)" class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nom / Société *</label>
-                                <input type="text" id="quoteName" required placeholder="Ex: Café de la Gare / Jean Dupont" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Email pour alertes & devis *</label>
-                                <input type="email" id="quoteEmail" required placeholder="contact@entreprise.fr" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Téléphone *</label>
-                                <input type="tel" id="quotePhone" required placeholder="06 12 34 56 78" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Date souhaitée (min. 48h) *</label>
-                                <input type="date" id="quoteDate" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1.5">Budget estimatif (€ TTC)</label>
-                                <input type="number" id="quoteProposedBudget" min="0" step="10" placeholder="Optionnel (ex: 600)" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                            </div>
-                        </div>
-
-                        <!-- Choix des modules libres -->
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-2">Modules ou besoins à inclure dans l'étude :</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                                <label class="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-brand-400 transition-colors">
-                                    <input type="checkbox" name="quoteModules" value="Infrastructure Réseau & Wi-Fi" class="rounded text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-700">Infrastructure Réseau & Wi-Fi</span>
-                                </label>
-                                <label class="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-brand-400 transition-colors">
-                                    <input type="checkbox" name="quoteModules" value="Serveur de Journaux / Conformité RGPD" class="rounded text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-700">Serveur Logs & Conformité RGPD</span>
-                                </label>
-                                <label class="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-brand-400 transition-colors">
-                                    <input type="checkbox" name="quoteModules" value="Portail Captif Personnalisé" class="rounded text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-700">Portail Captif Personnalisé</span>
-                                </label>
-                                <label class="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-brand-400 transition-colors">
-                                    <input type="checkbox" name="quoteModules" value="Développement / Script sur-mesure" class="rounded text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-700">Développement / Script sur-mesure</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Description libre du besoin & contraintes *</label>
-                            <textarea id="quoteDesc" rows="3" required placeholder="Décrivez la surface, le nombre d'utilisateurs estimés, le matériel existant ou vos objectifs spécifiques..." class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"></textarea>
-                        </div>
-
-                        <!-- Option de mode de règlement préféré sur le devis -->
-                        <div class="p-4 rounded-2xl bg-white border border-slate-200">
-                            <span class="block text-xs font-semibold text-slate-700 mb-2">Préférence de règlement une fois le devis validé :</span>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 cursor-pointer has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50/50">
-                                    <input type="radio" name="quotePayPref" value="Paiement partiel (30% acompte + 70% solde)" checked class="text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-800">Partiel (30 % acompte / 70 % solde)</span>
-                                </label>
-                                <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 cursor-pointer has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50/50">
-                                    <input type="radio" name="quotePayPref" value="Paiement total (100% à validation)" class="text-brand-600 focus:ring-brand-500">
-                                    <span class="text-xs font-medium text-slate-800">Total (100 % à la commande)</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4"></i>
-                            <span>Envoyer ma demande & déclencher l'alerte e-mail</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3 : Stripe, Sécurité & Paiement Flexible -->
-    <section id="garanties" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold mb-3">
-                <i data-lucide="shield-check" class="w-4 h-4"></i>
-                Transactions Chiffrées & Conformité PCI-DSS
-            </span>
-            <h2 class="text-2xl font-bold text-slate-900">Paiement sécurisé par Stripe & Suivi par E-mail</h2>
-            <p class="text-sm text-slate-600 mt-2">Vos dossiers, acomptes et validations sont enregistrés en toute sécurité et notifiés par e-mail à chaque étape.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Option A — Souplesse</span>
-                    <span class="text-xl font-extrabold text-slate-900">30 %</span>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 mb-2">Paiement Partiel (Acompte)</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Bloquez votre créneau (au moins 48h à l'avance) en versant uniquement <strong>30 % d'acompte</strong> via Stripe. Le solde de 70 % est réglable en un clic depuis votre espace dossiers.
-                </p>
-            </div>
-            <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold">Option B — Intégral</span>
-                    <span class="text-xl font-extrabold text-slate-900">100 %</span>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 mb-2">Paiement Total Immédiat</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Réglez la totalité de la prestation ou du devis validé en une seule transaction Stripe sécurisée (3D Secure). Reçu et confirmation envoyés par e-mail immédiatement.
-                </p>
-            </div>
-            <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold">Sécurité & Traçabilité</span>
-                    <i data-lucide="lock" class="w-5 h-5 text-brand-600"></i>
-                </div>
-                <h3 class="text-base font-bold text-slate-900 mb-2">Stripe + Base Enregistrée</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Aucune donnée bancaire n'est stockée sur nos serveurs (tokenisation Stripe). Vos dossiers, statuts de validation et historiques d'alertes e-mail sont sauvegardés automatiquement.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pied de page -->
-    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-            <div class="flex items-center gap-2 text-white font-semibold text-sm">
-                <i data-lucide="calendar-check-2" class="w-4 h-4 text-brand-500"></i>
-                <span>HorizonBooking</span>
-            </div>
-            <p>© 2026 HorizonBooking — Réservation 48h avant • Paiement sécurisé Stripe • Alertes E-mail.</p>
-        </div>
-    </footer>
-
-    <!-- ===================================================================== -->
-    <!-- MODALE DE RÉSERVATION & PAIEMENT STRIPE (OFFRES CITÉES & DEVIS VALIDÉS)-->
-    <!-- ===================================================================== -->
-    <div id="bookingModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div onclick="closeBookingModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"></div>
-
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <div class="relative inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl w-full border border-slate-200">
-                <!-- En-tête -->
-                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Réservation & Paiement Stripe</span>
-                        <h3 id="modalOfferTitle" class="text-lg font-bold text-slate-900">Titre de l'offre</h3>
-                    </div>
-                    <button onclick="closeBookingModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <!-- Formulaire -->
-                <form id="bookingForm" onsubmit="confirmBooking(event)" class="p-6 space-y-5">
-                    <!-- Bandeau Règle 48h -->
-                    <div class="flex items-center gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200/80 text-amber-800 text-xs">
-                        <i data-lucide="clock-alert" class="w-4 h-4 shrink-0 text-amber-600"></i>
-                        <span><strong>Règle de planification :</strong> Réservation obligatoire au moins <strong>48 heures avant</strong> l'intervention (à partir du <strong id="modalMinDateText"></strong>).</span>
-                    </div>
-
-                    <!-- Date et créneau -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Date d'intervention (J+2 min.) *</label>
-                            <input type="date" id="bookDate" required onchange="validate48hInput(this)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Créneau horaire *</label>
-                            <select id="bookSlot" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                                <option value="Matin (09h00 - 12h00)">Matin (09h00 - 12h00)</option>
-                                <option value="Après-midi (14h00 - 17h30)">Après-midi (14h00 - 17h30)</option>
-                                <option value="Journée complète (09h00 - 17h30)">Journée complète (09h00 - 17h30)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Coordonnées client -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nom complet / Société *</label>
-                            <input type="text" id="bookClientName" required placeholder="Votre nom" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Email (Confirmation & Reçu) *</label>
-                            <input type="email" id="bookClientEmail" required placeholder="vous@exemple.fr" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
-                        </div>
-                    </div>
-
-                    <!-- CHOIX DU MODE DE PAIEMENT : TOTAL OU PARTIEL -->
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-2">Choisissez votre modalité de règlement :</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <!-- Option Paiement Partiel (30%) -->
-                            <label class="relative flex flex-col p-4 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-brand-300 transition-all has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50/40">
-                                <input type="radio" name="paymentMode" value="partial" onchange="updatePaymentSummary()" checked class="sr-only">
-                                <div class="flex items-center justify-between mb-1">
-                                    <span class="text-xs font-bold uppercase text-brand-600">Paiement Partiel</span>
-                                    <span class="px-2 py-0.5 text-[11px] font-bold rounded-md bg-brand-100 text-brand-700">30 %</span>
-                                </div>
-                                <span id="partialAmountDisplay" class="text-xl font-extrabold text-slate-900">0 €</span>
-                                <span class="text-[11px] text-slate-500 mt-1">Acompte aujourd'hui, solde de <strong id="remainingAmountDisplay">0 €</strong> à régler ensuite.</span>
-                            </label>
-
-                            <!-- Option Paiement Total (100%) -->
-                            <label class="relative flex flex-col p-4 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-brand-300 transition-all has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50/40">
-                                <input type="radio" name="paymentMode" value="full" onchange="updatePaymentSummary()" class="sr-only">
-                                <div class="flex items-center justify-between mb-1">
-                                    <span class="text-xs font-bold uppercase text-emerald-700">Paiement Total</span>
-                                    <span class="px-2 py-0.5 text-[11px] font-bold rounded-md bg-emerald-100 text-emerald-800">100 %</span>
-                                </div>
-                                <span id="fullAmountDisplay" class="text-xl font-extrabold text-slate-900">0 €</span>
-                                <span class="text-[11px] text-slate-500 mt-1">Règlement intégral immédiat. Aucun solde à payer ensuite.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Terminal Stripe Elements Sécurisé -->
-                    <div class="p-4 rounded-2xl bg-slate-900 text-white space-y-3 border border-slate-800">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
-                                Stripe Checkout Sécurisé (TLS 1.3 • 3D Secure)
-                            </span>
-                            <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-[10px] font-bold tracking-wider uppercase">
-                                Powered by Stripe
-                            </span>
-                        </div>
-                        <div class="grid grid-cols-12 gap-2.5">
-                            <div class="col-span-12 sm:col-span-7 relative">
-                                <input type="text" id="stripeCardNum" required maxlength="19" placeholder="4242 •••• •••• 4242" value="4242 4242 4242 4242" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs font-mono focus:outline-none focus:border-brand-500">
-                            </div>
-                            <input type="text" id="stripeCardExp" required maxlength="5" placeholder="MM/AA" value="12/28" class="col-span-6 sm:col-span-3 px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs font-mono text-center focus:outline-none focus:border-brand-500">
-                            <input type="text" id="stripeCardCvc" required maxlength="3" placeholder="CVC" value="842" class="col-span-6 sm:col-span-2 px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs font-mono text-center focus:outline-none focus:border-brand-500">
-                        </div>
-                        <p class="text-[11px] text-slate-400 flex items-center justify-between">
-                            <span>Empreinte chiffrée • Aucune carte conservée en clair</span>
-                            <span id="stripeModeIndicator" class="text-emerald-400 font-medium">Mode Test Stripe Actif</span>
-                        </p>
-                    </div>
-
-                    <!-- Récapitulatif dynamique -->
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-200">
-                        <div>
-                            <p class="text-xs text-slate-500">Montant débité via Stripe :</p>
-                            <p id="finalChargeAmount" class="text-2xl font-extrabold text-brand-600">0 €</p>
-                        </div>
-                        <button type="submit" id="confirmStripeBtn" class="px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 transition-all flex items-center gap-2">
-                            <i data-lucide="lock" class="w-4 h-4"></i>
-                            <span id="submitBtnLabel">Payer l'acompte</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+      <fieldset id="paybox">
+        <legend>4. Paiement</legend>
+        <label class="choice"><input type="radio" name="pay" value="acompte" checked>
+          <b>Acompte de 40 %</b><span>Confirme votre créneau. Le solde se règle le jour J.</span></label>
+        <label class="choice"><input type="radio" name="pay" value="total">
+          <b>Paiement total</b><span>Vous réglez tout maintenant, rien à régler le jour J.</span></label>
+      </fieldset>
     </div>
 
-    <!-- ===================================================================== -->
-    <!-- MODALE ESPACE PRO : TARIFS LIBRES, VALIDATION DEVIS, STRIPE & EMAILS  -->
-    <!-- ===================================================================== -->
-    <div id="adminModal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true">
-        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div onclick="closeAdminModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <div class="relative inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full border border-slate-200">
-                <!-- En-tête Espace Pro -->
-                <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-                            <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold">Espace Pro — Gestion Libre des Tarifs, Validations & Stripe</h3>
-                            <p class="text-[11px] text-slate-400">Modifications enregistrées automatiquement et synchronisées</p>
-                        </div>
-                    </div>
-                    <button onclick="closeAdminModal()" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <!-- Onglets de l'Espace Pro -->
-                <div class="flex border-b border-slate-200 bg-slate-50 px-6 gap-6 text-xs font-semibold">
-                    <button onclick="switchAdminTab('tarifs')" id="tabBtn-tarifs" class="admin-tab py-3.5 tab-active">1. Tarifs Libres des Offres</button>
-                    <button onclick="switchAdminTab('validations')" id="tabBtn-validations" class="admin-tab py-3.5 text-slate-500 hover:text-slate-800">2. Dossiers & Devis à Valider</button>
-                    <button onclick="switchAdminTab('config')" id="tabBtn-config" class="admin-tab py-3.5 text-slate-500 hover:text-slate-800">3. Stripe & Alertes E-mail</button>
-                </div>
-
-                <!-- Contenu Onglet 1 : Tarifs libres -->
-                <div id="adminPanel-tarifs" class="admin-panel p-6 max-h-[70vh] overflow-y-auto space-y-5">
-                    <div class="flex items-center justify-between">
-                        <p class="text-xs text-slate-600">Modifiez directement le prix ou le titre de n'importe quelle offre ci-dessous, ou ajoutez une nouvelle prestation libre :</p>
-                        <button onclick="addNewCustomOffer()" class="shrink-0 px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold flex items-center gap-1.5">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                            <span>Ajouter une offre</span>
-                        </button>
-                    </div>
-
-                    <div id="adminOffersEditorList" class="space-y-3">
-                        <!-- Injecté dynamiquement -->
-                    </div>
-                </div>
-
-                <!-- Contenu Onglet 2 : Validation des réservations et chiffrage des devis libres -->
-                <div id="adminPanel-validations" class="admin-panel hidden p-6 max-h-[70vh] overflow-y-auto space-y-4">
-                    <p class="text-xs text-slate-600">Validez les demandes de réservation ou fixez le tarif d'un devis libre. Chaque validation envoie automatiquement une <strong>alerte e-mail au client</strong>.</p>
-                    <div id="adminRecordsValidationList" class="space-y-3">
-                        <!-- Injecté dynamiquement -->
-                    </div>
-                </div>
-
-                <!-- Contenu Onglet 3 : Configuration Stripe & Alertes E-mail -->
-                <div id="adminPanel-config" class="admin-panel hidden p-6 max-h-[70vh] overflow-y-auto space-y-5">
-                    <form onsubmit="saveProSettings(event)" class="space-y-4">
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                                <i data-lucide="mail-check" class="w-4 h-4 text-brand-600"></i>
-                                Alertes E-mail Automatiques
-                            </h4>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Adresse e-mail administrateur (réception des alertes) *</label>
-                                <input type="email" id="configAdminEmail" required placeholder="direction@votre-entreprise.fr" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-sm">
-                            </div>
-                            <div class="flex flex-wrap gap-4 pt-1">
-                                <label class="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
-                                    <input type="checkbox" id="configAlertOnRequest" checked class="rounded text-brand-600">
-                                    <span>Alerte lors d'une nouvelle demande / réservation</span>
-                                </label>
-                                <label class="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
-                                    <input type="checkbox" id="configAlertOnValidation" checked class="rounded text-brand-600">
-                                    <span>Alerte client lors de la validation</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
-                                <i data-lucide="credit-card" class="w-4 h-4 text-brand-600"></i>
-                                Configuration Clé Publique Stripe (Sécurité PCI-DSS)
-                            </h4>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Clé publique Stripe (`pk_test_...` ou `pk_live_...`)</label>
-                                <input type="text" id="configStripePk" placeholder="pk_live_51Pxxxxxxxxxxxxxxxxxxxxxx" class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs font-mono">
-                                <p class="text-[11px] text-slate-500 mt-1">La clé secrète (`sk_live_...`) ne doit jamais être exposée côté navigateur ; elle s'utilise uniquement côté serveur Webhook.</p>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors">
-                            Enregistrer les paramètres de sécurité & alertes
-                        </button>
-                    </form>
-
-                    <!-- Journal des alertes e-mail envoyées -->
-                    <div class="pt-4 border-t border-slate-200">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Journal des alertes e-mail déclenchées</h4>
-                        <div id="emailLogsList" class="space-y-2 max-h-40 overflow-y-auto text-xs">
-                            <!-- Logs injectés -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- TIROIR LATÉRAL : MES RÉSERVATIONS & DEVIS EN COURS                    -->
-    <!-- ===================================================================== -->
-    <div id="bookingsDrawer" class="fixed inset-0 z-50 hidden overflow-hidden">
-        <div onclick="toggleDrawer('bookingsDrawer')" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity"></div>
-        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col h-full border-l border-slate-200">
-                <div class="px-6 py-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="folder-check" class="w-5 h-5 text-brand-600"></i>
-                        <h3 class="font-bold text-slate-900">Mes Dossiers & Paiements</h3>
-                    </div>
-                    <button onclick="toggleDrawer('bookingsDrawer')" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <div id="bookingsList" class="flex-1 overflow-y-auto p-6 space-y-4">
-                    <!-- Liste générée dynamiquement -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- NOTIFICATION TOAST + APERÇU ALERTE E-MAIL                             -->
-    <!-- ===================================================================== -->
-    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-700 flex items-start gap-3 max-w-md">
-            <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                <i data-lucide="mail-check" class="w-5 h-5"></i>
-            </div>
-            <div>
-                <h4 id="toastTitle" class="text-sm font-bold">Confirmation</h4>
-                <p id="toastMessage" class="text-xs text-slate-300 mt-0.5 leading-relaxed">Votre action a bien été enregistrée.</p>
-                <p id="toastEmailBadge" class="text-[11px] text-indigo-300 font-medium mt-1.5 flex items-center gap-1">
-                    <i data-lucide="send" class="w-3 h-3"></i>
-                    <span>Alerte e-mail transmise</span>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script applicatif avec persistance Firestore sécurisée + repli mémoire -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // --- 1. DONNÉES INITIALES DES OFFRES (MODIFIABLES LIBREMENT DANS L'ESPACE PRO) ---
-        const DEFAULT_OFFERS = [
-            {
-                id: 'off-1',
-                category: 'installation',
-                badge: 'Le plus demandé',
-                badgeColor: 'bg-brand-50 text-brand-700 border-brand-200',
-                title: 'Pack Wi-Fi Invité & Conformité RGPD',
-                duration: 'Demi-journée (4h)',
-                price: 490,
-                description: 'Installation complète de votre point d’accès MikroTik, portail captif personnalisé et serveur de journaux conforme aux obligations légales (conservation 1 an).',
-                features: [
-                    'Routeur & Portail Captif avec code tournant',
-                    'Serveur de logs sécurisé (RGPD / LCEN)',
-                    'Accès distant sécurisé inclus'
-                ]
-            },
-            {
-                id: 'off-2',
-                category: 'audit',
-                badge: 'Diagnostic Express',
-                badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-                title: 'Audit Sécurité & Couverture Wi-Fi',
-                duration: '2 heures sur site',
-                price: 220,
-                description: 'Analyse complète des zones blanches, vérification de la segmentation réseau (caisse vs invités) et rapport de conformité sécurité.',
-                features: [
-                    'Cartographie du signal & débit réel',
-                    'Test d’isolation des réseaux sensibles',
-                    'Compte-rendu détaillé sous 24h'
-                ]
-            },
-            {
-                id: 'off-3',
-                category: 'installation',
-                badge: 'Clé en main',
-                badgeColor: 'bg-slate-100 text-slate-700 border-slate-200',
-                title: 'Migration & Remplacement Serveur',
-                duration: '3 heures sur site',
-                price: 350,
-                description: 'Transfert intégral de votre configuration système, sauvegarde des archives existantes, bascule réseau et tests de continuité.',
-                features: [
-                    'Sauvegarde complète sur support externe',
-                    'Reconfiguration IP fixe & pare-feu',
-                    'Zéro interruption de service'
-                ]
-            },
-            {
-                id: 'off-4',
-                category: 'maintenance',
-                badge: 'Sérénité Annuelle',
-                badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-                title: 'Forfait Maintenance & Supervision 12 Mois',
-                duration: 'Contrat annuel',
-                price: 580,
-                description: 'Surveillance proactive de vos équipements, mises à jour de sécurité mensuelles et vérification automatique de la purge des journaux.',
-                features: [
-                    'Intervention à distance sous 4h ouvrées',
-                    'Mises à jour sécurité & sauvegardes',
-                    '2 déplacements sur site inclus'
-                ]
-            },
-            {
-                id: 'off-5',
-                category: 'audit',
-                badge: 'Mise en conformité',
-                badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-                title: 'Mise aux Normes RGPD Registre & Affichage',
-                duration: '2h30 (Conseil + Kit)',
-                price: 290,
-                description: 'Rédaction de votre règlement intérieur Wi-Fi, mentions légales du portail captif et registre de traitement des données.',
-                features: [
-                    'Règlement intérieur prêt à intégrer',
-                    'Procédure de purge automatique à 365j',
-                    'Attestation de conformité technique'
-                ]
-            },
-            {
-                id: 'off-6',
-                category: 'installation',
-                badge: 'Multi-Points',
-                badgeColor: 'bg-brand-50 text-brand-700 border-brand-200',
-                title: 'Extension Réseau & Bornes Additionnelles',
-                duration: 'Journée complète',
-                price: 790,
-                description: 'Déploiement de jusqu’à 3 bornes Wi-Fi professionnelles supplémentaires avec itinérance fluide (roaming) pour grands espaces.',
-                features: [
-                    'Paramétrage centralisé CAPsMAN',
-                    'Tests de charge multi-utilisateurs',
-                    'Garantie matériel & pose 1 an'
-                ]
-            }
-        ];
-
-        // --- 2. ÉTAT GLOBAL DE L'APPLICATION ---
-        let offersList = [...DEFAULT_OFFERS];
-        let selectedOffer = null;
-        let activeQuoteToPayId = null; // Si on règle un devis validé via la modale Stripe
-        let currentCategoryFilter = 'all';
-        let userRecords = [];
-        let emailLogs = [];
-        let proSettings = {
-            adminEmail: 'contact@horizon-booking.fr',
-            alertOnRequest: true,
-            alertOnValidation: true,
-            stripePublicKey: 'pk_test_51HorizonSecureBookingKey2026'
-        };
-
-        // Variables Firebase / Firestore
-        let db = null;
-        let auth = null;
-        let currentUser = null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'horizon-booking-app';
-
-        // --- 3. CALCUL DE LA RÈGLE OBLIGATOIRE 48H AVANT ---
-        function getMinBookingDateISO() {
-            // Ajoute exactement 48 heures (2 jours complets) à l'instant présent
-            const minDate = new Date(Date.now() + 48 * 60 * 60 * 1000);
-            const year = minDate.getFullYear();
-            const month = String(minDate.getMonth() + 1).padStart(2, '0');
-            const day = String(minDate.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-        function formatFrenchDate(isoDate) {
-            if (!isoDate || !isoDate.includes('-')) return isoDate;
-            const [y, m, d] = isoDate.split('-');
-            return `${d}/${m}/${y}`;
-        }
-
-        function enforce48hRuleOnInputs() {
-            const minIso = getMinBookingDateISO();
-            const minFr = formatFrenchDate(minIso);
-
-            const heroLabel = document.getElementById('minDateHeroLabel');
-            if (heroLabel) heroLabel.textContent = minFr;
-
-            const modalLabel = document.getElementById('modalMinDateText');
-            if (modalLabel) modalLabel.textContent = minFr;
-
-            const bookDate = document.getElementById('bookDate');
-            if (bookDate) {
-                bookDate.min = minIso;
-                if (!bookDate.value || bookDate.value < minIso) {
-                    bookDate.value = minIso;
-                }
-            }
-
-            const quoteDate = document.getElementById('quoteDate');
-            if (quoteDate) {
-                quoteDate.min = minIso;
-                if (!quoteDate.value || quoteDate.value < minIso) {
-                    quoteDate.value = minIso;
-                }
-            }
-        }
-
-        window.validate48hInput = function(inputEl) {
-            const minIso = getMinBookingDateISO();
-            if (inputEl.value < minIso) {
-                inputEl.value = minIso;
-                showToast(
-                    'Délai de 48h obligatoire',
-                    `La réservation doit être effectuée au minimum 48h à l'avance. Date ajustée au ${formatFrenchDate(minIso)}.`,
-                    'Règle de planification appliquée'
-                );
-            }
-        };
-
-        // --- 4. INITIALISATION FIRESTORE (ENREGISTREMENT SÉCURISÉ DES INFORMATIONS) ---
-        async function initSecureStorage() {
-            try {
-                if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                    const firebaseConfig = JSON.parse(__firebase_config);
-                    const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
-                    db = getFirestore(app);
-
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-
-                    onAuthStateChanged(auth, (user) => {
-                        currentUser = user;
-                        if (user) {
-                            const badge = document.getElementById('cloudStatusBadge');
-                            if (badge) badge.classList.remove('hidden');
-                            subscribeToCloudData();
-                        }
-                    });
-                }
-            } catch (err) {
-                // Fonctionnement fluide en mémoire si l'environnement cloud n'est pas configuré
-            }
-        }
-
-        function subscribeToCloudData() {
-            if (!db || !currentUser) return;
-
-            // Écoute des offres tarifaires personnalisées (données publiques de la boutique)
-            const offersCol = collection(db, 'artifacts', appId, 'public', 'data', 'offers');
-            onSnapshot(offersCol, (snapshot) => {
-                if (!snapshot.empty) {
-                    const loadedOffers = [];
-                    snapshot.forEach(docSnap => loadedOffers.push(docSnap.data()));
-                    loadedOffers.sort((a, b) => (a.order || 0) - (b.order || 0));
-                    offersList = loadedOffers;
-                    renderOffers(currentCategoryFilter);
-                    renderAdminOffersEditor();
-                }
-            }, () => {});
-
-            // Écoute des paramètres Pro (Stripe & Email)
-            const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'general');
-            onSnapshot(settingsDoc, (docSnap) => {
-                if (docSnap.exists()) {
-                    proSettings = { ...proSettings, ...docSnap.data() };
-                    applySettingsToUI();
-                }
-            }, () => {});
-
-            // Écoute des réservations et devis enregistrés
-            const recordsCol = collection(db, 'artifacts', appId, 'public', 'data', 'records');
-            onSnapshot(recordsCol, (snapshot) => {
-                const loadedRecords = [];
-                snapshot.forEach(docSnap => loadedRecords.push(docSnap.data()));
-                loadedRecords.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-                userRecords = loadedRecords;
-                renderBookingsDrawer();
-                renderAdminValidations();
-            }, () => {});
-        }
-
-        async function persistOfferToCloud(offerObj) {
-            if (!db || !currentUser) return;
-            try {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'offers', offerObj.id), offerObj);
-            } catch (e) {}
-        }
-
-        async function persistRecordToCloud(recordObj) {
-            if (!db || !currentUser) return;
-            try {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'records', recordObj.id), recordObj);
-            } catch (e) {}
-        }
-
-        async function persistSettingsToCloud() {
-            if (!db || !currentUser) return;
-            try {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'general'), proSettings);
-            } catch (e) {}
-        }
-
-        // --- 5. SYSTÈME D'ALERTE E-MAIL AUTOMATIQUE ---
-        function triggerEmailAlert({ toClient, subject, summary }) {
-            const timestamp = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-            const logEntry = {
-                time: timestamp,
-                recipients: `${toClient} + ${proSettings.adminEmail}`,
-                subject,
-                summary
-            };
-            emailLogs.unshift(logEntry);
-            renderEmailLogs();
-            return `Alerte e-mail envoyée à ${toClient} & ${proSettings.adminEmail}`;
-        }
-
-        function renderEmailLogs() {
-            const container = document.getElementById('emailLogsList');
-            if (!container) return;
-            if (emailLogs.length === 0) {
-                container.innerHTML = `<p class="text-slate-400 italic">Aucune alerte e-mail envoyée durant cette session.</p>`;
-                return;
-            }
-            container.innerHTML = emailLogs.map(log => `
-                <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
-                    <div class="flex justify-between font-semibold text-slate-800">
-                        <span>${log.subject}</span>
-                        <span class="text-slate-400">${log.time}</span>
-                    </div>
-                    <p class="text-[11px] text-brand-600 mt-0.5">Destinataires : ${log.recipients}</p>
-                    <p class="text-[11px] text-slate-600 mt-0.5">${log.summary}</p>
-                </div>
-            `).join('');
-        }
-
-        // --- 6. AFFICHAGE ET FILTRAGE DES OFFRES ---
-        function renderOffers(category) {
-            currentCategoryFilter = category;
-            const grid = document.getElementById('offersGrid');
-            const filtered = category === 'all' 
-                ? offersList 
-                : offersList.filter(o => o.category === category);
-
-            grid.innerHTML = filtered.map(offer => {
-                const priceNum = Number(offer.price) || 0;
-                const deposit = Math.round(priceNum * 0.30);
-                return `
-                <div class="group bg-white rounded-3xl border border-slate-200/90 p-6 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-brand-300 transition-all duration-300">
-                    <div>
-                        <div class="flex items-center justify-between gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${offer.badgeColor || 'bg-brand-50 text-brand-700 border-brand-200'}">
-                                ${offer.badge}
-                            </span>
-                            <span class="text-xs font-medium text-slate-500 flex items-center gap-1">
-                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                                ${offer.duration}
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors mb-2">
-                            ${offer.title}
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
-                            ${offer.description}
-                        </p>
-
-                        <ul class="space-y-2 mb-6">
-                            ${(offer.features || []).map(f => `
-                                <li class="flex items-start gap-2 text-xs text-slate-700">
-                                    <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
-                                    <span>${f}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-
-                    <div class="pt-5 border-t border-slate-100">
-                        <div class="flex items-baseline justify-between mb-4">
-                            <div>
-                                <span class="text-xs text-slate-400 block">Tarif TTC</span>
-                                <span class="text-2xl font-extrabold text-slate-900">${priceNum} €</span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[11px] font-medium text-brand-600 bg-brand-50 px-2.5 py-1 rounded-lg">
-                                    ou ${deposit} € d'acompte (30%)
-                                </span>
-                            </div>
-                        </div>
-
-                        <button onclick="openBookingModal('${offer.id}')" class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-sm transition-all flex items-center justify-center gap-2">
-                            <span>Réserver (min. 48h avant)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-                `;
-            }).join('');
-
-            lucide.createIcons();
-        }
-
-        window.filterOffers = function(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.dataset.cat === category) {
-                    btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white transition-all';
-                } else {
-                    btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all';
-                }
-            });
-            renderOffers(category);
-        };
-
-        // --- 7. MODALE DE RÉSERVATION & PAIEMENT STRIPE ---
-        window.openBookingModal = function(offerId, quoteRecordId = null) {
-            enforce48hRuleOnInputs();
-            activeQuoteToPayId = quoteRecordId;
-
-            if (quoteRecordId) {
-                const quoteRec = userRecords.find(r => r.id === quoteRecordId);
-                if (!quoteRec) return;
-                selectedOffer = {
-                    id: quoteRec.id,
-                    title: `Devis Validé #${quoteRec.id} — ${quoteRec.clientName}`,
-                    price: Number(quoteRec.totalPrice)
-                };
-                document.getElementById('bookClientName').value = quoteRec.clientName;
-                document.getElementById('bookClientEmail').value = quoteRec.clientEmail;
-                if (quoteRec.date && quoteRec.date >= getMinBookingDateISO()) {
-                    document.getElementById('bookDate').value = quoteRec.date;
-                }
-            } else {
-                selectedOffer = offersList.find(o => o.id === offerId);
-            }
-
-            if (!selectedOffer) return;
-
-            document.getElementById('modalOfferTitle').textContent = selectedOffer.title;
-            
-            const partialRadio = document.querySelector('input[name="paymentMode"][value="partial"]');
-            if (partialRadio) partialRadio.checked = true;
-
-            updatePaymentSummary();
-            document.getElementById('bookingModal').classList.remove('hidden');
-            lucide.createIcons();
-        };
-
-        window.closeBookingModal = function() {
-            document.getElementById('bookingModal').classList.add('hidden');
-            activeQuoteToPayId = null;
-        };
-
-        window.updatePaymentSummary = function() {
-            if (!selectedOffer) return;
-            const total = Number(selectedOffer.price) || 0;
-            const partial = Math.round(total * 0.30);
-            const remaining = total - partial;
-
-            document.getElementById('partialAmountDisplay').textContent = `${partial} €`;
-            document.getElementById('remainingAmountDisplay').textContent = `${remaining} €`;
-            document.getElementById('fullAmountDisplay').textContent = `${total} €`;
-
-            const mode = document.querySelector('input[name="paymentMode"]:checked').value;
-            if (mode === 'partial') {
-                document.getElementById('finalChargeAmount').textContent = `${partial} €`;
-                document.getElementById('submitBtnLabel').textContent = `Payer l'acompte Stripe (${partial} €)`;
-            } else {
-                document.getElementById('finalChargeAmount').textContent = `${total} €`;
-                document.getElementById('submitBtnLabel').textContent = `Payer la totalité Stripe (${total} €)`;
-            }
-        };
-
-        window.confirmBooking = async function(event) {
-            event.preventDefault();
-            if (!selectedOffer) return;
-
-            const chosenDate = document.getElementById('bookDate').value;
-            const minIso = getMinBookingDateISO();
-            if (chosenDate < minIso) {
-                showToast('Réservation refusée', `Le délai obligatoire de 48h avant n'est pas respecté (date min. : ${formatFrenchDate(minIso)}).`, 'Sécurité planning');
-                return;
-            }
-
-            // Simulation du traitement sécurisé Stripe PaymentIntent
-            const btn = document.getElementById('confirmStripeBtn');
-            const originalText = document.getElementById('submitBtnLabel').textContent;
-            btn.disabled = true;
-            document.getElementById('submitBtnLabel').textContent = 'Autorisation Stripe 3DS...';
-
-            await new Promise(res => setTimeout(res, 650));
-
-            const mode = document.querySelector('input[name="paymentMode"]:checked').value;
-            const total = Number(selectedOffer.price);
-            const paidNow = mode === 'partial' ? Math.round(total * 0.30) : total;
-            const remaining = total - paidNow;
-            const clientName = document.getElementById('bookClientName').value;
-            const clientEmail = document.getElementById('bookClientEmail').value;
-            const slot = document.getElementById('bookSlot').value;
-            const stripeTxId = 'pi_' + Math.random().toString(36).substring(2, 14).toUpperCase();
-
-            let targetRecord;
-
-            if (activeQuoteToPayId) {
-                const idx = userRecords.findIndex(r => r.id === activeQuoteToPayId);
-                if (idx !== -1) {
-                    userRecords[idx].type = 'booking';
-                    userRecords[idx].date = chosenDate;
-                    userRecords[idx].slot = slot;
-                    userRecords[idx].paidAmount = paidNow;
-                    userRecords[idx].remainingAmount = remaining;
-                    userRecords[idx].paymentMode = mode === 'partial' ? 'Partiel (Acompte 30%)' : 'Total (100%)';
-                    userRecords[idx].validationStatus = 'Confirmée & Payée';
-                    userRecords[idx].stripeTxId = stripeTxId;
-                    targetRecord = userRecords[idx];
-                }
-            } else {
-                targetRecord = {
-                    id: 'RES-' + Math.floor(100000 + Math.random() * 900000),
-                    type: 'booking',
-                    title: selectedOffer.title,
-                    date: chosenDate,
-                    slot,
-                    clientName,
-                    clientEmail,
-                    totalPrice: total,
-                    paidAmount: paidNow,
-                    remainingAmount: remaining,
-                    paymentMode: mode === 'partial' ? 'Partiel (Acompte 30%)' : 'Total (100%)',
-                    validationStatus: 'En attente de validation Pro',
-                    stripeTxId,
-                    timestamp: Date.now(),
-                    createdAt: new Date().toLocaleDateString('fr-FR')
-                };
-                userRecords.unshift(targetRecord);
-            }
-
-            if (targetRecord) {
-                await persistRecordToCloud(targetRecord);
-            }
-
-            btn.disabled = false;
-            document.getElementById('submitBtnLabel').textContent = originalText;
-
-            closeBookingModal();
-            renderBookingsDrawer();
-            renderAdminValidations();
-
-            const mailStatus = triggerEmailAlert({
-                toClient: clientEmail,
-                subject: `Demande de réservation ${targetRecord.id} — Paiement Stripe ${paidNow} €`,
-                summary: `Intervention le ${formatFrenchDate(chosenDate)} (${slot}). Réf Stripe : ${stripeTxId}.`
-            });
-
-            showToast(
-                'Réservation enregistrée & payée !',
-                `Dossier ${targetRecord.id} sauvegardé (${paidNow} € via Stripe).`,
-                mailStatus
-            );
-        };
-
-        // --- 8. GESTION DES DEMANDES DE DEVIS LIBRE ---
-        window.submitCustomQuote = async function(event) {
-            event.preventDefault();
-
-            const chosenDate = document.getElementById('quoteDate').value;
-            const minIso = getMinBookingDateISO();
-            if (chosenDate && chosenDate < minIso) {
-                showToast('Date trop proche', `Merci de sélectionner une date à au moins 48h (${formatFrenchDate(minIso)} minimum).`, 'Règle 48h');
-                return;
-            }
-
-            const checkedModules = Array.from(document.querySelectorAll('input[name="quoteModules"]:checked'))
-                .map(cb => cb.value);
-
-            const payPref = document.querySelector('input[name="quotePayPref"]:checked').value;
-            const clientName = document.getElementById('quoteName').value;
-            const clientEmail = document.getElementById('quoteEmail').value;
-            const proposedBudget = document.getElementById('quoteProposedBudget').value;
-
-            const newQuote = {
-                id: 'DEV-' + Math.floor(100000 + Math.random() * 900000),
-                type: 'quote',
-                title: 'Prestation Libre sur Devis',
-                clientName,
-                clientEmail,
-                clientPhone: document.getElementById('quotePhone').value,
-                date: chosenDate || minIso,
-                modules: checkedModules.length > 0 ? checkedModules : ['Étude personnalisée'],
-                description: document.getElementById('quoteDesc').value,
-                proposedBudget: proposedBudget ? Number(proposedBudget) : null,
-                totalPrice: proposedBudget ? Number(proposedBudget) : 0,
-                paymentPreference: payPref,
-                validationStatus: 'En attente de chiffrage Pro',
-                timestamp: Date.now(),
-                createdAt: new Date().toLocaleDateString('fr-FR')
-            };
-
-            userRecords.unshift(newQuote);
-            await persistRecordToCloud(newQuote);
-
-            renderBookingsDrawer();
-            renderAdminValidations();
-            event.target.reset();
-            enforce48hRuleOnInputs();
-
-            const mailStatus = triggerEmailAlert({
-                toClient: clientEmail,
-                subject: `Nouvelle demande de devis libre ${newQuote.id}`,
-                summary: `Client : ${clientName} • Souhait : ${formatFrenchDate(newQuote.date)}.`
-            });
-
-            showToast(
-                'Demande de devis enregistrée',
-                `Référence ${newQuote.id} transmise pour chiffrage libre.`,
-                mailStatus
-            );
-        };
-
-        // --- 9. ESPACE PRO : TARIFS LIBRES, VALIDATION & ALERTES E-MAIL ---
-        window.openAdminModal = function() {
-            renderAdminOffersEditor();
-            renderAdminValidations();
-            applySettingsToUI();
-            renderEmailLogs();
-            document.getElementById('adminModal').classList.remove('hidden');
-            lucide.createIcons();
-        };
-
-        window.closeAdminModal = function() {
-            document.getElementById('adminModal').classList.add('hidden');
-        };
-
-        window.switchAdminTab = function(tabName) {
-            document.querySelectorAll('.admin-tab').forEach(btn => {
-                btn.classList.remove('tab-active');
-                btn.classList.add('text-slate-500');
-            });
-            document.getElementById(`tabBtn-${tabName}`).classList.add('tab-active');
-            document.getElementById(`tabBtn-${tabName}`).classList.remove('text-slate-500');
-
-            document.querySelectorAll('.admin-panel').forEach(panel => panel.classList.add('hidden'));
-            document.getElementById(`adminPanel-${tabName}`).classList.remove('hidden');
-        };
-
-        function renderAdminOffersEditor() {
-            const container = document.getElementById('adminOffersEditorList');
-            if (!container) return;
-
-            container.innerHTML = offersList.map((offer, index) => `
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-                    <div class="sm:col-span-5">
-                        <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Intitulé de l'offre</label>
-                        <input type="text" value="${offer.title}" onchange="updateOfferField(${index}, 'title', this.value)" class="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs font-semibold">
-                    </div>
-                    <div class="sm:col-span-3">
-                        <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Durée / Format</label>
-                        <input type="text" value="${offer.duration}" onchange="updateOfferField(${index}, 'duration', this.value)" class="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs">
-                    </div>
-                    <div class="sm:col-span-3">
-                        <label class="block text-[10px] font-bold uppercase text-brand-600 mb-1">Tarif Libre (€ TTC)</label>
-                        <input type="number" min="0" step="5" value="${offer.price}" onchange="updateOfferField(${index}, 'price', Number(this.value))" class="w-full px-3 py-1.5 rounded-xl bg-white border-2 border-brand-300 text-xs font-bold text-slate-900">
-                    </div>
-                    <div class="sm:col-span-1 flex justify-end pt-4">
-                        <button onclick="deleteOffer(${index})" class="p-2 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50" title="Supprimer cette offre">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        window.updateOfferField = async function(index, field, value) {
-            if (!offersList[index]) return;
-            offersList[index][field] = value;
-            offersList[index].order = index;
-            await persistOfferToCloud(offersList[index]);
-            renderOffers(currentCategoryFilter);
-            showToast('Tarif mis à jour', `L'offre "${offersList[index].title}" a été enregistrée.`, 'Catalogue synchronisé');
-        };
-
-        window.addNewCustomOffer = async function() {
-            const newOffer = {
-                id: 'off-' + Date.now(),
-                category: 'installation',
-                badge: 'Nouvelle Offre',
-                badgeColor: 'bg-brand-50 text-brand-700 border-brand-200',
-                title: 'Prestation Personnalisée',
-                duration: 'Sur rendez-vous',
-                price: 250,
-                order: offersList.length,
-                description: 'Prestation configurable librement selon les besoins spécifiques du client.',
-                features: ['Intervention sur site ou à distance', 'Garantie & support inclus']
-            };
-            offersList.push(newOffer);
-            await persistOfferToCloud(newOffer);
-            renderAdminOffersEditor();
-            renderOffers(currentCategoryFilter);
-        };
-
-        window.deleteOffer = function(index) {
-            if (offersList.length <= 1) return;
-            offersList.splice(index, 1);
-            renderAdminOffersEditor();
-            renderOffers(currentCategoryFilter);
-        };
-
-        function renderAdminValidations() {
-            const container = document.getElementById('adminRecordsValidationList');
-            if (!container) return;
-
-            if (userRecords.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 italic py-6 text-center">Aucune demande de réservation ou de devis enregistrée.</p>`;
-                return;
-            }
-
-            container.innerHTML = userRecords.map(rec => `
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div>
-                            <span class="text-xs font-mono font-bold text-brand-600">${rec.id}</span>
-                            <span class="text-xs font-bold text-slate-900 ml-2">${rec.clientName}</span>
-                            <span class="text-[11px] text-slate-500">(${rec.clientEmail})</span>
-                        </div>
-                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white border border-slate-300 text-slate-800">
-                            ${rec.validationStatus}
-                        </span>
-                    </div>
-
-                    <p class="text-xs text-slate-600">
-                        <strong>${rec.title}</strong> • Date souhaitée : <strong>${formatFrenchDate(rec.date)}</strong>
-                    </p>
-
-                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200/80">
-                        ${rec.type === 'quote' ? `
-                            <div class="flex items-center gap-2">
-                                <label class="text-xs font-semibold text-slate-700">Tarif fixé (€) :</label>
-                                <input type="number" id="quotePriceInput-${rec.id}" value="${rec.totalPrice || rec.proposedBudget || 450}" min="0" step="10" class="w-28 px-2.5 py-1.5 rounded-xl bg-white border border-slate-300 text-xs font-bold">
-                            </div>
-                        ` : `
-                            <span class="text-xs text-slate-600">Payé : <strong>${rec.paidAmount} €</strong> / ${rec.totalPrice} €</span>
-                        `}
-
-                        <button onclick="validateRecordAndAlert('${rec.id}')" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors">
-                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                            <span>${rec.type === 'quote' ? 'Chiffrer, Valider & Alerter par E-mail' : 'Valider la réservation & Alerter'}</span>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        window.validateRecordAndAlert = async function(recordId) {
-            const idx = userRecords.findIndex(r => r.id === recordId);
-            if (idx === -1) return;
-
-            const rec = userRecords[idx];
-            if (rec.type === 'quote') {
-                const inputEl = document.getElementById(`quotePriceInput-${recordId}`);
-                const finalPrice = inputEl ? Number(inputEl.value) : 450;
-                rec.totalPrice = finalPrice;
-                rec.validationStatus = `Devis Validé (${finalPrice} €) — Prêt au paiement`;
-            } else {
-                rec.validationStatus = 'Réservation Confirmée';
-            }
-
-            await persistRecordToCloud(rec);
-            renderAdminValidations();
-            renderBookingsDrawer();
-
-            const mailStatus = triggerEmailAlert({
-                toClient: rec.clientEmail,
-                subject: `Confirmation de votre dossier ${rec.id}`,
-                summary: rec.type === 'quote'
-                    ? `Votre devis a été chiffré à ${rec.totalPrice} € TTC. Vous pouvez procéder au règlement (30% ou 100%) via Stripe.`
-                    : `Votre créneau du ${formatFrenchDate(rec.date)} (${rec.slot}) est officiellement confirmé.`
-            });
-
-            showToast(
-                'Validation effectuée !',
-                `Le dossier ${rec.id} est validé et sauvegardé.`,
-                mailStatus
-            );
-        };
-
-        function applySettingsToUI() {
-            const adminInput = document.getElementById('configAdminEmail');
-            const stripeInput = document.getElementById('configStripePk');
-            const reqCheck = document.getElementById('configAlertOnRequest');
-            const valCheck = document.getElementById('configAlertOnValidation');
-
-            if (adminInput) adminInput.value = proSettings.adminEmail || '';
-            if (stripeInput) stripeInput.value = proSettings.stripePublicKey || '';
-            if (reqCheck) reqCheck.checked = !!proSettings.alertOnRequest;
-            if (valCheck) valCheck.checked = !!proSettings.alertOnValidation;
-
-            const indicator = document.getElementById('stripeModeIndicator');
-            if (indicator && proSettings.stripePublicKey) {
-                indicator.textContent = proSettings.stripePublicKey.startsWith('pk_live_')
-                    ? 'Stripe Production (Live)'
-                    : 'Stripe Sécurisé (Connecté)';
-            }
-        }
-
-        window.saveProSettings = async function(event) {
-            event.preventDefault();
-            proSettings.adminEmail = document.getElementById('configAdminEmail').value;
-            proSettings.stripePublicKey = document.getElementById('configStripePk').value;
-            proSettings.alertOnRequest = document.getElementById('configAlertOnRequest').checked;
-            proSettings.alertOnValidation = document.getElementById('configAlertOnValidation').checked;
-
-            await persistSettingsToCloud();
-            applySettingsToUI();
-            showToast('Paramètres sauvegardés', 'Configuration Stripe et destinataire des alertes e-mail enregistrés.', `Alerte sur ${proSettings.adminEmail}`);
-        };
-
-        // --- 10. TIROIR DES DOSSIERS & PAIEMENT DU SOLDE ---
-        window.settleRemainingBalance = async function(recordId) {
-            const idx = userRecords.findIndex(r => r.id === recordId);
-            if (idx === -1) return;
-
-            const paidSolde = userRecords[idx].remainingAmount;
-            userRecords[idx].paidAmount = userRecords[idx].totalPrice;
-            userRecords[idx].remainingAmount = 0;
-            userRecords[idx].paymentMode = 'Total soldé via Stripe (100%)';
-
-            await persistRecordToCloud(userRecords[idx]);
-            renderBookingsDrawer();
-            renderAdminValidations();
-
-            const mailStatus = triggerEmailAlert({
-                toClient: userRecords[idx].clientEmail,
-                subject: `Reçu de solde Stripe — Dossier ${recordId}`,
-                summary: `Règlement du solde de ${paidSolde} € effectué. Dossier 100 % acquitté.`
-            });
-
-            showToast('Solde réglé via Stripe', `Le solde de ${paidSolde} € a été encaissé.`, mailStatus);
-        };
-
-        function renderBookingsDrawer() {
-            const list = document.getElementById('bookingsList');
-            const badge = document.getElementById('bookingsBadge');
-            badge.textContent = userRecords.length;
-
-            if (userRecords.length === 0) {
-                list.innerHTML = `
-                    <div class="text-center py-12">
-                        <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="inbox" class="w-6 h-6"></i>
-                        </div>
-                        <p class="text-sm font-semibold text-slate-800">Aucun dossier enregistré</p>
-                        <p class="text-xs text-slate-500 mt-1">Vos réservations (48h avant) et demandes de devis apparaîtront ici.</p>
-                    </div>
-                `;
-                lucide.createIcons();
-                return;
-            }
-
-            list.innerHTML = userRecords.map(item => {
-                if (item.type === 'booking') {
-                    const isFullyPaid = item.remainingAmount === 0;
-                    return `
-                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono font-bold text-brand-600">${item.id}</span>
-                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isFullyPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                                ${isFullyPaid ? 'Soldé (100%)' : 'Acompte versé (30%)'}
-                            </span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">${item.title}</h4>
-                            <p class="text-xs text-slate-500 mt-0.5">${formatFrenchDate(item.date)} • ${item.slot}</p>
-                            <p class="text-[11px] font-semibold text-brand-700 mt-1">Statut : ${item.validationStatus}</p>
-                        </div>
-                        <div class="p-3 rounded-xl bg-white border border-slate-200/80 text-xs space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-slate-500">Total prestation :</span>
-                                <span class="font-bold text-slate-900">${item.totalPrice} €</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-500">Réglé via Stripe :</span>
-                                <span class="font-semibold text-emerald-600">${item.paidAmount} €</span>
-                            </div>
-                            ${!isFullyPaid ? `
-                            <div class="flex justify-between pt-1 border-t border-slate-100">
-                                <span class="text-slate-600 font-medium">Reste à régler :</span>
-                                <span class="font-bold text-amber-700">${item.remainingAmount} €</span>
-                            </div>
-                            ` : ''}
-                        </div>
-                        ${!isFullyPaid ? `
-                        <button onclick="settleRemainingBalance('${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
-                            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            <span>Régler le solde via Stripe (${item.remainingAmount} €)</span>
-                        </button>
-                        ` : ''}
-                    </div>
-                    `;
-                } else {
-                    const isPricedAndReady = Number(item.totalPrice) > 0 && item.validationStatus.includes('Validé');
-                    return `
-                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono font-bold text-slate-700">${item.id}</span>
-                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-100 text-indigo-800">
-                                Devis Libre
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-sm text-slate-900">${item.clientName}</h4>
-                        <p class="text-xs text-slate-600 line-clamp-2">${item.description}</p>
-                        <div class="flex flex-wrap gap-1 pt-1">
-                            ${(item.modules || []).map(m => `<span class="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-[10px] text-slate-600">${m}</span>`).join('')}
-                        </div>
-                        <div class="pt-2 border-t border-slate-200/70 space-y-2 text-[11px]">
-                            <div class="flex items-center justify-between">
-                                <span class="text-slate-500">Date : <strong>${formatFrenchDate(item.date)}</strong></span>
-                                <span class="text-brand-600 font-semibold">${item.validationStatus}</span>
-                            </div>
-                            ${isPricedAndReady ? `
-                            <button onclick="toggleDrawer('bookingsDrawer'); openBookingModal(null, '${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-colors">
-                                Réserver & Payer ce devis (${item.totalPrice} € — 30% ou 100%)
-                            </button>
-                            ` : ''}
-                        </div>
-                    </div>
-                    `;
-                }
-            }).join('');
-
-            lucide.createIcons();
-        }
-
-        window.toggleDrawer = function(drawerId) {
-            const drawer = document.getElementById(drawerId);
-            drawer.classList.toggle('hidden');
-        };
-
-        // --- 11. NOTIFICATION VISUELLE (TOAST) ---
-        let toastTimeout;
-        function showToast(title, message, emailInfo = 'Alerte e-mail transmise') {
-            const toast = document.getElementById('toastNotification');
-            document.getElementById('toastTitle').textContent = title;
-            document.getElementById('toastMessage').textContent = message;
-            document.getElementById('toastEmailBadge').innerHTML = `<i data-lucide="send" class="w-3 h-3"></i> <span>${emailInfo}</span>`;
-            lucide.createIcons();
-
-            toast.classList.remove('translate-y-28', 'opacity-0');
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.add('translate-y-28', 'opacity-0');
-            }, 5000);
-        }
-
-        // Démarrage initial
-        enforce48hRuleOnInputs();
-        renderOffers('all');
-        renderBookingsDrawer();
-        initSecureStorage();
-        lucide.createIcons();
-    </script>
+    <aside class="summary" aria-live="polite">
+      <h3>Votre réservation</h3>
+      <dl>
+        <dt>Formule</dt><dd id="s-offer">—</dd>
+        <dt>Date</dt><dd id="s-date">—</dd>
+        <dt>Groupe</dt><dd id="s-guests">—</dd>
+      </dl>
+      <div class="total">
+        <div id="s-label">Tarif</div>
+        <div class="amt" id="s-amt">Sur devis</div>
+      </div>
+      <p class="note" id="s-note">Réservez au moins 48 h à l’avance.</p>
+      <p style="margin:18px 0 0"><button class="cta" type="submit" id="submit">Envoyer ma demande</button></p>
+      <div id="status" role="status"></div>
+    </aside>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <b>JOLCAKES</b> – <span id="f-address"></span><br>
+  <span id="f-contact"></span>
+</div></footer>
+
+<script>
+/* ============ À MODIFIER : vos réglages ============ */
+const CONFIG = {
+  // Contact affiché en bas de page et utilisé pour recevoir les demandes (secours si pas de Formspree)
+  email: "contact@exemple.fr",
+  phone: "01 23 45 67 89",
+  address: "Votre adresse",
+  // Formspree (gratuit) : collez l’URL de votre formulaire, ex. "https://formspree.io/f/xxxxxxx". Laissez "" pour utiliser l’e-mail.
+  formspree: "",
+  // Acompte en pourcentage
+  depositPercent: 40,
+  // Délai minimum de réservation, en jours
+  minDays: 2,
+  // Formules. price: { type: "perPerson" | "flat", amount: nombre en euros } ou null = "nous consulter"
+  // links: liens de paiement Stripe (Payment Links) : { acompte: "https://buy.stripe.com/...", total: "https://buy.stripe.com/..." }
+  offers: [
+    { id:"evenement", name:"Événement « Tout inclus »",
+      desc:"Espace privatisé, petit-déjeuner ou collation, mise en place et service.",
+      from:"09:00", to:"21:00", price:null, links:{ acompte:"", total:"" } },
+    { id:"seche", name:"Sèche « Vous consommez »",
+      desc:"Espace à votre disposition, consommation sur place à la carte selon l’effectif.",
+      from:"09:00", to:"21:00", price:null, links:{ acompte:"", total:"" } },
+    { id:"matinale", name:"Matinale 9h – 11h",
+      desc:"Espace calme, Wi-Fi, boisson chaude et douceur maison, ou boissons à volonté.",
+      from:"09:00", to:"10:30", price:null, links:{ acompte:"", total:"" } },
+    { id:"devis", name:"Sur devis",
+      desc:"Un projet particulier ? Décrivez-le, nous vous répondons avec une offre sur mesure.",
+      from:"09:00", to:"21:00", price:null, quote:true }
+  ]
+};
+/* ================================================== */
+
+const $ = id => document.getElementById(id);
+const euro = n => n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:2});
+let offer = CONFIG.offers[0];
+
+function renderOffers(){
+  $("offers").innerHTML = CONFIG.offers.map((o,i)=>`
+    <label class="choice"><input type="radio" name="offer" value="${o.id}" ${i===0?"checked":""}>
+      <b>${o.name}</b><span>${o.desc}</span>
+      <em>${o.quote ? "Réponse sous 24 h" : o.price ? (o.price.type==="perPerson" ? euro(o.price.amount)+" / personne" : euro(o.price.amount)) : "Tarif : nous consulter"}</em>
+    </label>`).join("");
+  document.querySelectorAll('input[name="offer"]').forEach(r=>r.addEventListener("change",()=>{
+    offer = CONFIG.offers.find(o=>o.id===r.value); fillTimes(); update();
+  }));
+}
+function fillTimes(){
+  const [fh,fm]=offer.from.split(":").map(Number), [th,tm]=offer.to.split(":").map(Number);
+  const cur=$("time").value; let html="";
+  for(let m=fh*60+fm;m<=th*60+tm;m+=30){
+    const v=String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+    html+=`<option value="${v}">${v.replace(":","h")}</option>`;
+  }
+  $("time").innerHTML=html; if([...$("time").options].some(o=>o.value===cur)) $("time").value=cur;
+}
+function totalPrice(){
+  if(!offer.price) return null;
+  const g=Number($("guests").value)||0;
+  return offer.price.type==="perPerson" ? offer.price.amount*g : offer.price.amount;
+}
+function payMode(){ return document.querySelector('input[name="pay"]:checked').value; }
+function update(){
+  const isQuote=!!offer.quote;
+  $("paybox").style.display = isQuote ? "none" : "";
+  $("s-offer").textContent = offer.name;
+  const d=$("date").value;
+  $("s-date").textContent = d ? new Date(d+"T12:00").toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" à "+$("time").value.replace(":","h") : "—";
+  $("s-guests").textContent = ($("guests").value||"—")+" personne(s)";
+  const t=totalPrice();
+  if(isQuote){ $("s-label").textContent="Tarif"; $("s-amt").textContent="Sur devis"; $("s-note").textContent="Aucun paiement maintenant. Nous vous envoyons une offre sur mesure."; $("submit").textContent="Demander un devis"; return; }
+  $("submit").textContent = "Réserver et payer";
+  if(t===null){ $("s-label").textContent="Tarif"; $("s-amt").textContent="À confirmer";
+    $("s-note").textContent="Nous vous confirmons le tarif et vous envoyons le lien de paiement ("+(payMode()==="acompte"?"acompte de "+CONFIG.depositPercent+" %":"paiement total")+")."; $("submit").textContent="Envoyer ma demande"; }
+  else { const due = payMode()==="acompte" ? t*CONFIG.depositPercent/100 : t;
+    $("s-label").textContent = payMode()==="acompte" ? "Acompte à régler maintenant ("+CONFIG.depositPercent+" %)" : "Total à régler maintenant";
+    $("s-amt").textContent = euro(due);
+    $("s-note").textContent = payMode()==="acompte" ? "Total "+euro(t)+" · solde de "+euro(t-due)+" à régler le jour J." : "Total "+euro(t)+" · rien à régler le jour J."; }
+}
+function setStatus(msg,cls){ const s=$("status"); s.textContent=msg; s.className=cls||""; }
+
+async function submit(e){
+  e.preventDefault(); setStatus("","");
+  const req=["date","name","phone","email"].filter(id=>!$(id).value.trim());
+  const g=Number($("guests").value);
+  if(req.length||!(g>=1&&g<=35)){ setStatus(g>35?"La capacité maximale est de 35 personnes. Pour un groupe plus grand, choisissez « Sur devis ».":"Complétez la date, votre nom, votre téléphone et votre e-mail.","err"); (req.length?$(req[0]):$("guests")).focus(); return; }
+  if(!/^\S+@\S+\.\S+$/.test($("email").value)){ setStatus("Cette adresse e-mail semble incorrecte.","err"); $("email").focus(); return; }
+  const min=new Date(); min.setDate(min.getDate()+CONFIG.minDays); min.setHours(0,0,0,0);
+  if(!offer.quote && new Date($("date").value+"T12:00")<min){ setStatus("Réservez au moins "+CONFIG.minDays*24+" h à l’avance, ou choisissez « Sur devis ».","err"); $("date").focus(); return; }
+
+  const t=totalPrice(), mode=offer.quote?"devis":payMode();
+  const data={ formule:offer.name, date:$("date").value, heure:$("time").value, duree:$("duration").value, personnes:g,
+    nom:$("name").value.trim(), telephone:$("phone").value.trim(), email:$("email").value.trim(), message:$("notes").value.trim(),
+    paiement:mode, total:t===null?"à confirmer":euro(t),
+    a_regler_maintenant: t===null||offer.quote ? "à confirmer" : euro(mode==="acompte"?t*CONFIG.depositPercent/100:t) };
+  const link = (!offer.quote && offer.links && offer.links[mode]) || "";
+  $("submit").disabled=true;
+  try{
+    if(CONFIG.formspree){
+      const r=await fetch(CONFIG.formspree,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({...data,_subject:"Réservation JOLCAKES – "+offer.name})});
+      if(!r.ok) throw new Error("envoi");
+    } else {
+      const body=Object.entries(data).map(([k,v])=>k+" : "+v).join("\n");
+      location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Réservation JOLCAKES – "+offer.name)+"&body="+encodeURIComponent(body);
+    }
+    if(link){ setStatus("Demande envoyée. Redirection vers le paiement sécurisé…","ok"); setTimeout(()=>location.href=link,1200); }
+    else if(offer.quote){ setStatus("Merci "+data.nom.split(" ")[0]+" ! Votre demande de devis est envoyée. Nous vous répondons sous 24 h.","ok"); $("submit").disabled=false; }
+    else { setStatus("Merci "+data.nom.split(" ")[0]+" ! Votre demande est envoyée. Nous confirmons votre créneau et vous envoyons le lien de paiement par e-mail.","ok"); $("submit").disabled=false; }
+  }catch(err){
+    setStatus("L’envoi a échoué. Réessayez ou appelez-nous au "+CONFIG.phone+".","err"); $("submit").disabled=false;
+  }
+}
+
+(function init(){
+  renderOffers(); fillTimes();
+  const m=new Date(); m.setDate(m.getDate()+CONFIG.minDays); $("date").min=m.toISOString().slice(0,10);
+  $("f-address").textContent=CONFIG.address;
+  $("f-contact").innerHTML='<a href="tel:'+CONFIG.phone.replace(/\s/g,"")+'">'+CONFIG.phone+'</a> · <a href="mailto:'+CONFIG.email+'">'+CONFIG.email+'</a>';
+  ["date","time","guests"].forEach(id=>$(id).addEventListener("input",update));
+  document.querySelectorAll('input[name="pay"]').forEach(r=>r.addEventListener("change",update));
+  $("form").addEventListener("submit",submit); update();
+})();
+</script>
 </body>
 </html>
-
-```
